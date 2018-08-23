@@ -41,6 +41,9 @@ clientproxylibrary.o: alarmClockStubs.o
 
 alarmClockStubs.o:alarmClockStubs.c 
 	gcc -c -fPIC alarmClockStubs.c -o alarmClockStubs.o $(LIBS)
+	
+alarmClockStubs.c:
+	gdbus-codegen --generate-c-code alarmClockStubs --c-namespace alarmClock --interface-prefix com.time.service. --c-generate-object-manager time_service_alarmClock.xml
 
 clean:
 	rm -f libCP.so *.o CPPClient
